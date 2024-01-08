@@ -19,6 +19,7 @@ missingno = "^0.5.2"
 nltk = "^3.8.1"
 soynlp = "^0.0.493"
 selenium = "^4.16.0"
+shapely = "^2.0.2"
 
 
 [build-system]
