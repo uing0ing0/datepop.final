@@ -10,6 +10,7 @@ class BlueRibbonCrawler:
         self.data = pd.DataFrame(columns=["name", "ribbonType"])
 
     def crawling(self):
+        print("Blue Ribbon Survey crawling start!")
         # initialization
         try:
             print("Crawling page 0......")
@@ -17,6 +18,7 @@ class BlueRibbonCrawler:
             for i in range(1, self.max_page):
                 print(f"Crawling page {i}......")
                 self.crawling_onepage()
+            print("Blue Ribbon Survey crawling done!")
         except (HTTPError, ConnectionError) as e:
             print(f"Network error: {e}")
             return
