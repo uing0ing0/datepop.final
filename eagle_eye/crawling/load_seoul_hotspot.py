@@ -1,12 +1,16 @@
 import csv
+import os
 from shapely.geometry import Polygon
-
 
 def load_seoul_hotspots():
     seoul_hotspots = []
 
+    # 스크립트 파일이 위치한 디렉토리를 기준으로 상대 경로 구하기
+    directory = os.path.dirname(os.path.abspath(__file__))
+    csv_file_path = os.path.join(directory, 'data', 'seoul_hotspots.csv')
+
     # CSV 파일 읽기
-    with open('data/seoul_hotspots.csv', 'r', encoding='utf-8') as file:
+    with open(csv_file_path, 'r', encoding='utf-8') as file:
         reader = csv.reader(file)
         next(reader)  # 첫 번째 헤더 라인 건너뛰기
 
