@@ -2,6 +2,7 @@ import csv
 import os
 from shapely.geometry import Polygon
 
+
 def load_seoul_hotspots():
     seoul_hotspots = []
 
@@ -16,7 +17,9 @@ def load_seoul_hotspots():
 
         for row in reader:
             location = row[0]
-            polygon_coords = [(float(x), float(y)) for x, y in (point.split(',') for point in row[1].split(';'))]
-            seoul_hotspots.append({"location": location, "polygon_area": Polygon(polygon_coords)})
+            polygon_coords = [(float(x), float(y)) for x, y in (
+                point.split(',') for point in row[1].split(';'))]
+            seoul_hotspots.append(
+                {"location": location, "polygon_area": Polygon(polygon_coords)})
 
     return seoul_hotspots
