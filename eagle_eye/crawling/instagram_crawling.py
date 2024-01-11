@@ -4,6 +4,7 @@ from requests.exceptions import HTTPError, ConnectionError
 
 import time
 
+
 class InstagramCrawler:
     def crawling(self, url):
         json_link = url + "/?__a=1&__d=dis"
@@ -18,25 +19,25 @@ class InstagramCrawler:
             posts_count = data['graphql']['user']['edge_owner_to_timeline_media']['count']
 
             return {
-                "status" : 'complete',
-                "followers" : followers_count,
-                "posts_count" : posts_count
+                "status": 'complete',
+                "followers": followers_count,
+                "posts_count": posts_count
             }
         except (HTTPError, ConnectionError) as e:
             return {
-                "status" : 'network error',
-                "followers" : followers_count,
-                "posts_count" : posts_count
+                "status": 'network error',
+                "followers": followers_count,
+                "posts_count": posts_count
             }
         except:
             return {
-                "status" : 'incomplete',
-                "followers" : None,
-                "posts_count" : None
+                "status": 'incomplete',
+                "followers": None,
+                "posts_count": None
             }
-        
+
 # if __name__ == "__main__":
-    
+
 #     instagram_crawaler = InstagramCrawler()
 #     response = instagram_crawaler.crawling("https://instagram.com/letsgo._.kim")
 #     print(response)

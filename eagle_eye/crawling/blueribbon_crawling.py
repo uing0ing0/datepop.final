@@ -42,8 +42,6 @@ class BlueRibbonCrawler:
                 latitude = item["gps"]["latitude"]
                 longitude = item["gps"]["longitude"]
 
-                print(latitude)
-
                 roadAddrPart1 = item["juso"]["roadAddrPart1"]
                 detailAddress = item["juso"]["detailAddress"]
 
