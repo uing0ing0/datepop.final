@@ -14,7 +14,7 @@ import re
 import os
 
 from blueribbon_crawling import BlueRibbonCrawler
-from load_seoul_hotspot import load_seoul_hotspots
+from load_hotspots import load_seoul_hotspots
 
 
 class DatePopCrawler:
