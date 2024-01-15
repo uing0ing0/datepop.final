@@ -1,6 +1,11 @@
+
 import pandas as pd
 import requests
 from requests.exceptions import HTTPError, ConnectionError
+
+# 블루리본서베이 크롤링 구버전
+# 네이버지도를 크롤링할 때마다 api를 요청하기 때문에 시간이 소요됨
+# 신 버전 : bluer_crawling.py
 
 
 class BlueRibbonCrawler:
@@ -27,8 +32,9 @@ class BlueRibbonCrawler:
         except Exception as e:
             print(f"An error occurred: {e}")
 
-    def crawling_onepage(self):
+    def crawling_onepage(self, zone1):
         try:
+
             response = requests.get(
                 f"https://www.bluer.co.kr/api/v1/restaurants?page={self.current_page}&query={self.location}")
 
