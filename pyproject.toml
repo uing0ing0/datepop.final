@@ -18,8 +18,9 @@ statsmodels = "^0.14.1"
 missingno = "^0.5.2"
 nltk = "^3.8.1"
 soynlp = "^0.0.493"
-selenium = "^4.16.0"
+selenium = "4.17.2"
 shapely = "^2.0.2"
+webdriver-manager = "^4.0.1"
 
 
 [build-system]
