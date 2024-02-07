@@ -7,8 +7,8 @@ def load_bluer(file_name):
     bluer_data = pd.DataFrame(
         columns=["name", "ribbonType", "latitude", "longitude", "address", "phone"])
 
-    # 스크립트 파일이 위치한 디렉토리를 기준으로 상대 경로 구하기
-    directory = os.path.dirname(os.path.abspath(__file__))
+    # 스크립트 파일이 위치한 디렉토리의 상위 폴더를 기준으로 상대 경로 구하기
+    directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     csv_file_path = os.path.join(directory, 'data/blueribbon', file_name)
 
     # CSV 파일 읽기

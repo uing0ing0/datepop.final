@@ -6,8 +6,8 @@ from shapely.geometry import Polygon
 def load_hotspots(file_name):
     hotspots = []
 
-    # 스크립트 파일이 위치한 디렉토리를 기준으로 상대 경로 구하기
-    directory = os.path.dirname(os.path.abspath(__file__))
+    # 스크립트 파일이 위치한 디렉토리의 상위 폴더를 기준으로 상대 경로 구하기
+    directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     csv_file_path = os.path.join(directory, 'data', file_name)
 
     # CSV 파일 읽기
