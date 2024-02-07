@@ -1,1 +1,5 @@
 .DS_Store
+eagle_eye/crawling/archive
+__pycache__/
+*.pyc
+eagle_eye/crawling/utils/__pycache__/
