@@ -1,14 +1,24 @@
-def convert_str_to_number(input):
-    if type(input) == int:
-        return input
-    elif type(input) == str:
-        unit = input[-1]
-        if unit == "만":
-            multiplier = 10000
-        elif unit == "억":
-            multiplier = 100000000
-        else:
-            return int(input)
+def convert_str_to_number(input_str):
+    if isinstance(input_str, int):
+        return input_str
+    elif isinstance(input_str, str):
+        # 쉼표와 공백 제거
+        input_str = input_str.replace(',', '').replace(' ', '')
 
-        number = float(input[:-1])
-        return int(number * multiplier)
+        # 단위 확인 및 숫자 변환
+        if input_str[-1].isdigit():  # 숫자로 끝나면 단위 변환 없이 직접 변환
+            return int(input_str)
+        else:
+            unit = input_str[-1].upper()
+            number = float(input_str[:-1])
+
+            if unit == '만':
+                return int(number * 10000)
+            elif unit == '억':
+                return int(number * 100000000)
+            elif unit == 'K':
+                return int(number * 1000)
+            elif unit == 'M':
+                return int(number * 1000000)
+            else:
+                raise ValueError("Unsupported unit: {}".format(unit))
