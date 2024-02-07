@@ -4,6 +4,8 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import os
 
+# 공정거래위원회의 정보공개서에서 프랜차이즈 체인 정보 크롤링
+
 
 def franchise_crawling():
     url = "https://franchise.ftc.go.kr/mnu/00013/program/userRqst/list.do?pageUnit=20000&pageIndex=1"
