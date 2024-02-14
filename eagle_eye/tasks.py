@@ -1,10 +1,12 @@
-import threading
 import os
 
-from navermap_crawling import crawling_one_keyword
-from scoring import scoring
+from eagle_eye.navermap_crawling import crawling_one_keyword
+from eagle_eye.scoring import scoring
+
+from eagle_eye.celery import app
 
 
+@app.task
 def crawl_and_score(location, keywords):
 
     for keyword in keywords:
@@ -16,7 +18,7 @@ def crawl_and_score(location, keywords):
                     result_data=crawled_data)
 
 
-# DB 연결이 이루어지면, 아래 함수는 DB에 데이터를 전달하는 함수로 교체해야함
+# DB 연결이 이루어지면, 아래 함수는 DB에 데이터를 저장하는 함수로 교체해야함
 def save_result(location, keyword, result_data):
 
     directory = os.path.dirname(os.path.abspath(__file__))

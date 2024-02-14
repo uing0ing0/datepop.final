@@ -5,8 +5,8 @@ import math
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.preprocessing import MinMaxScaler, RobustScaler
 
-from utils.calculate_score import calculate_score
-from utils.load_datepop import load_datepop
+from eagle_eye.utils.calculate_score import calculate_score
+from eagle_eye.utils.load_datepop import load_datepop
 
 
 class CrawlingDataScorer:

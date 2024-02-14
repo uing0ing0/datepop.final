@@ -16,12 +16,12 @@ import time
 import re
 import locale
 
-from utils.load_hotspots import load_hotspots
-from utils.load_bluer import load_bluer
-from utils.haversine import haversine
-from utils.convert_str_to_number import convert_str_to_number
-from utils.is_within_date import is_within_one_month, is_within_two_weeks
-from utils.get_instagram_link import get_instagram_link
+from eagle_eye.utils.load_hotspots import load_hotspots
+from eagle_eye.utils.load_bluer import load_bluer
+from eagle_eye.utils.haversine import haversine
+from eagle_eye.utils.convert_str_to_number import convert_str_to_number
+from eagle_eye.utils.is_within_date import is_within_one_month, is_within_two_weeks
+from eagle_eye.utils.get_instagram_link import get_instagram_link
 
 locale.setlocale(locale.LC_TIME, 'ko_KR.UTF-8')
 
@@ -792,7 +792,7 @@ class DatePopCrawler:
         self.search_keyword()
         if self.crawl_new:
             self.click_new_option()
-        for page in range(1, 2):  # 기존 7, 임시로 2로 수정. 빠른 확인을 위함
+        for page in range(1, 7):
             print("="*10+f"page {page}" + "="*10)
             self.crawling_one_page()
             # 마지막 페이지인 경우
