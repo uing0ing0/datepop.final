@@ -13,9 +13,6 @@ app.conf.update(
 )
 app.conf.beat_schedule = {}
 
-day_of_week = '3'  # 실행할 요일(1부터 7까지 월요일~일요일)
-hour = 17  # 실행할 시간
-minute = 10  # 실행할 분
 
 crawling_dict_list = [
     {
@@ -39,6 +36,10 @@ crawling_dict_list = [
         "keywords": ["맛집", "공방", "만화카페", "커플 스튜디오", "동물카페"]
     },
 ]
+
+day_of_week = '4'  # 실행할 요일(1부터 7까지 월요일~일요일)
+hour = 14  # 실행할 시간
+minute = 25  # 실행할 분
 
 for idx, item in enumerate(crawling_dict_list, start=1):
     task_name = f'crawl_and_score_{item["location"]}_every_week'
