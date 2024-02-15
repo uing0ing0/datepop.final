@@ -1,0 +1,22 @@
+# 사용할 기본 이미지
+FROM python:3.12
+
+# 작업 디렉토리 설정
+WORKDIR /app
+
+# 프로젝트의 종속성 파일 복사
+COPY poetry.lock pyproject.toml ./
+
+# Poetry 설치
+RUN pip install poetry
+
+# 프로젝트의 종속성 설치
+RUN poetry config virtualenvs.create false \
+    && poetry install --without local
+
+# 프로젝트 파일 복사
+# COPY . .
+COPY ./eagle_eye/celery.py /app/eagle_eye/
+
+# Beat 컨테이너 실행 시 기본으로 실행할 명령어 설정 (Celery Beat 실행)
+CMD ["celery", "-A", "eagle_eye", "beat", "--loglevel=info"]

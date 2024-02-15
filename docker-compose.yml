@@ -1,7 +1,9 @@
 version: "3.8"
 services:
   celeryworker:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
     command: celery -A eagle_eye worker --loglevel=info --concurrency=1
     environment:
       - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672/
@@ -12,7 +14,9 @@ services:
     container_name: eagle_eye_celery_worker
 
   celerybeat:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.beat
     command: celery -A eagle_eye beat --loglevel=info
     environment:
       - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672/
