@@ -1,0 +1,33 @@
+version: "3.8"
+services:
+  celeryworker:
+    build: .
+    command: celery -A eagle_eye worker --loglevel=info --concurrency=1
+    environment:
+      - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672/
+    volumes:
+      - .:/app
+    depends_on:
+      - rabbitmq
+    container_name: eagle_eye_celery_worker
+
+  celerybeat:
+    build: .
+    command: celery -A eagle_eye beat --loglevel=info
+    environment:
+      - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672/
+    volumes:
+      - .:/app
+    depends_on:
+      - rabbitmq
+    container_name: eagle_eye_celery_beat
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    container_name: eagle_eye_rabbitmq
