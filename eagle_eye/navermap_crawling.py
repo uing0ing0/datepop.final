@@ -8,13 +8,13 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from selenium.webdriver.firefox.service import Service
 
 import pandas as pd
 from urllib.parse import urlparse, parse_qs
 from shapely.geometry import Point
 import time
 import re
-import locale
 
 from eagle_eye.utils.load_hotspots import load_hotspots
 from eagle_eye.utils.load_bluer import load_bluer
@@ -22,8 +22,6 @@ from eagle_eye.utils.haversine import haversine
 from eagle_eye.utils.convert_str_to_number import convert_str_to_number
 from eagle_eye.utils.is_within_date import is_within_one_month, is_within_two_weeks
 from eagle_eye.utils.get_instagram_link import get_instagram_link
-
-locale.setlocale(locale.LC_TIME, 'ko_KR.UTF-8')
 
 
 class DatePopCrawler:
@@ -90,11 +88,11 @@ class DatePopCrawler:
         # # 파이어폭스 로깅 설정, 파이어폭스에는 직접 로그 경로를 설정하는 방법이 다를 수 있음
         # options.log.level = "trace"
 
-        print("파이어폭스 서비스 설치")
-        # service = Service(GeckoDriverManager().install())
         print("파이어폭스 드라이버 시동")
-        # driver = webdriver.Firefox(options=options, service=service)
-        driver = webdriver.Firefox(options=options)
+        geckodriver_path = '/usr/local/bin/geckodriver'  # geckodriver 절대 경로
+        service = Service(executable_path=geckodriver_path)
+        driver = webdriver.Firefox(options=options, service=service)
+
         print("네이버지도 열기")
         driver.get("https://map.naver.com/")
 
@@ -223,6 +221,8 @@ class DatePopCrawler:
                 print(e)
                 print("매장 정보 로딩 실패")
                 return False
+            except Exception as e:
+                print("entryIfram 이동 중 에러")
 
             # "요청하신 페이지를 찾을 수 없습니다" -> "새로고침" 버튼 클릭하여 매장 정보 다시 불러오기
             try:
@@ -648,7 +648,9 @@ class DatePopCrawler:
             self.driver.switch_to.window(self.driver.window_handles[0])
 
         # 한 매장에 대한 크롤링 결과
-        print(f"{self.location} + {self.keyword} + {self.store_dict}")
+        print(f"{self.location} + {self.keyword}")
+        print(f"매장 이름: {self.store_dict["name"]}, 매장 카테고리: {
+              self.store_dict["category"]}")
         self.insert_into_dataframe()
 
     # 한 매장에 대한 크롤링 정볼르 DataFrame에 Insertion
@@ -667,8 +669,6 @@ class DatePopCrawler:
             if self.get_into_store(index=i) == False:
                 continue
             self.get_store_details()
-        # self.driver.execute_cdp_cmd("Network.clearBrowserCache", {}) # 크롬 전용. 파이어폭스는 X
-        # self.driver.execute_cdp_cmd("Network.clearBrowserCookies", {})
 
     # 한 페이지에 대한 매장 개수 반환
     def scroll_to_end(self):
@@ -809,7 +809,7 @@ def crawling_one_keyword(location, keyword):
     seoul_hotspots = load_hotspots('seoul_hotspots.csv')
     try:
         search_word = location + " " + keyword
-        print(search_word, " 크롤링 시작")
+        print(f"{search_word} 크롤링 시작")
 
         # 음식 크롤링 여부
         is_food = False
