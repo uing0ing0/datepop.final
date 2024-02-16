@@ -2,6 +2,8 @@ import csv
 import os
 import pandas as pd
 
+# 파일 이름을 기준으로 블루리본서베이 매장 정보를 load해 반환합니다.
+
 
 def load_bluer(file_name):
     bluer_data = pd.DataFrame(

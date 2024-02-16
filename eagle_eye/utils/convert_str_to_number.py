@@ -1,3 +1,5 @@
+# 인스타그램에서 100K, 10만 등의 형식으로 표기된 str type의 숫자 데이터를 int type으로 변환해서 반환합니다
+
 def convert_str_to_number(input_str):
     if isinstance(input_str, int):
         return input_str

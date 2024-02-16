@@ -1,8 +1,8 @@
 import pandas as pd
 import os
-from shapely.geometry import Polygon
 
 
+# datepop_crawling.ipynb 파일을 통해 저장한 데이트팝 컨텐츠 활성화 매장을 load해서 반환합니다.
 def load_datepop(is_food: bool):
 
     directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

@@ -1,5 +1,8 @@
 import re
 
+# 네이버 지도에 각 매장별로 적힌 인스타그램 url을 입력으로 받아,
+# 올바른 링크인지 확인하고, 적절한 url을 반환합니다.
+
 
 def get_instagram_link(input_url):
 
@@ -9,7 +12,7 @@ def get_instagram_link(input_url):
                  "http://www.instagram.com"]
 
     if input_url in wrong_url:
-        return False
+        return None
 
     # query parameter 제거
     if "?" in input_url:
@@ -29,4 +32,4 @@ def get_instagram_link(input_url):
             return instagram_url
         return instagram_url
     else:
-        return False
+        return None

@@ -1,6 +1,6 @@
 import math
 
-# 두 위도-경도 값 사이의 거리를 계산하는 함수
+# 두 위도-경도 값 사이의 거리를 계산하고 반환합니다.
 
 
 def haversine(lat1: float, lon1: float, lat2: float, lon2: float) -> float:

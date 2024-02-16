@@ -2,6 +2,8 @@ import csv
 import os
 from shapely.geometry import Polygon
 
+# 파일에 저장된 핫스팟 polygon 데이터를 load해서 반환합니다
+
 
 def load_hotspots(file_name):
     hotspots = []

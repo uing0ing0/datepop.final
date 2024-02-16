@@ -1,5 +1,7 @@
 from datetime import datetime, timedelta
 
+# 크롤링 과정에서 최근 영업상태를 나타내는 feature의 값을 결정지을 때 사용됩니다
+
 
 def is_within_one_month(date_text):
     # 요일 정보를 제외하고 날짜만 추출
