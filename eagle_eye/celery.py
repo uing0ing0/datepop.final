@@ -37,9 +37,10 @@ crawling_dict_list = [
     },
 ]
 
-day_of_week = '4'  # 실행할 요일(1부터 7까지 월요일~일요일)
-hour = 14  # 실행할 시간
-minute = 25  # 실행할 분
+# 월요일 오전 9시
+day_of_week = '1'  # 실행할 요일(1부터 7까지 월요일~일요일)
+hour = 9  # 실행할 시간
+minute = 0  # 실행할 분
 
 for idx, item in enumerate(crawling_dict_list, start=1):
     task_name = f'crawl_and_score_{item["location"]}_every_week'
