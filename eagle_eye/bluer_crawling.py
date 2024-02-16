@@ -4,7 +4,8 @@ from requests.exceptions import HTTPError, ConnectionError
 import csv
 import os
 
-# 블루리본서베이 크롤링 신버전
+# 블루리본서베이 전체 데이터 크롤링
+# 블루리본서베이는 1년에 한 번 정도 업데이트되니 참고
 
 
 class BlueRibbonCrawler:

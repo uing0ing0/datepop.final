@@ -1,3 +1,5 @@
+# docker에 프로젝트를 띄우지 않고 로컬에서 크롤링 & 점수산출을 진행할 수 있음
+
 import threading
 import os
 
@@ -55,7 +57,7 @@ def main():
         },
     ]
 
-    semaphore = threading.Semaphore(1)
+    semaphore = threading.Semaphore(4)
 
     threads = []
     for search_dict in crawling_dict_list:

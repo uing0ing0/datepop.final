@@ -1,4 +1,6 @@
 import os
+from celery import current_task
+# import logging
 
 from eagle_eye.navermap_crawling import crawling_one_keyword
 from eagle_eye.scoring import scoring
@@ -18,11 +20,14 @@ def crawl_and_score(location, keywords):
                     result_data=crawled_data)
 
 
-# DB 연결이 이루어지면, 아래 함수는 DB에 데이터를 저장하는 함수로 교체해야함
+# DB 연결이 이루어지면, 아래 함수는 DB에 데이터를 저장하는 함수로 교체 필요
 def save_result(location, keyword, result_data):
 
     directory = os.path.dirname(os.path.abspath(__file__))
-    csv_file_path = os.path.join(
-        directory, 'data/result/', f"{location}-{keyword}.csv")
+    result_directory = os.path.join(directory, 'data/result')
+    csv_file_path = os.path.join(result_directory, f"{location}-{keyword}.csv")
 
-    result_data.to_csv(csv_file_path, encoding='utf-8-sig', index=False, )
+    # 결과를 저장하기 전에 디렉토리가 존재하는지 확인하고, 없으면 생성
+    os.makedirs(result_directory, exist_ok=True)
+
+    result_data.to_csv(csv_file_path, encoding='utf-8-sig', index=False)
