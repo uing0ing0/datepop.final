@@ -1,6 +1,10 @@
 .DS_Store
-eagle_eye/crawling/archive
-__pycache__/
+eagle_eye/archive/
+__pycache__
+*/__pycache__/
 *.pyc
-eagle_eye/crawling/utils/__pycache__/
-*.csv
+*.pyo
+*.pyd
+
+*.pyc
+eagle_eye/data/datepop/unused
