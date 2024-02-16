@@ -140,6 +140,10 @@ class CrawlingDataScorer:
         self.crawled_data.sort_values(by="total_score", ascending=False,
                                       ignore_index=True, inplace=True)
 
+    def save_result(self):
+        self.crawled_data.to_csv(
+            f'eagle_eye/data/result/{self.location}{self.keyword}.csv', encoding='utf-8-sig')
+
     def scoring(self):
         self.load_and_preprocess_datepop_data()
         self.preprocess_crawled_data()
@@ -147,9 +151,7 @@ class CrawlingDataScorer:
         self.calculate_condition_score()
         self.calculate_similarity_score()
         self.calculate_total_score()
-
-    # def save_result(self):
-    #     self.crawled_data.head(20).to_csv(f'data/crawl_score/hybrid/{self.location}{self.keyword}_top20.csv', encoding='utf-8-sig')
+        self.save_result()
 
 
 # 크롤링이 완료된 후, 크롤링 결과를 인자로 받아 점수 산출 후 결과 반환
