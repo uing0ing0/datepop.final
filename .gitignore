@@ -8,3 +8,5 @@ __pycache__
 
 *.pyc
 eagle_eye/data/datepop/unused
+
+db.sqlite3
